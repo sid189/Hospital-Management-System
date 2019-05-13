@@ -2,7 +2,7 @@ import java.sql.*;
 
 public class GetConnection {
 	// Initialize class variables to create a connection
-        static final String jdbcURL = "jdbc:mariadb://classdb2.csc.ncsu.edu:3306/prmody";
+        static final String jdbcURL = "jdbc:mariadb://classdb2.csc.ncsu.edu:3306/$USERNAME";
         private static Connection connection = null;
         private static Statement statement = null;
         private static ResultSet result = null;
@@ -10,12 +10,12 @@ public class GetConnection {
               try{
 			// This creates a connection and returns a connection object to the caller.
                 	Class.forName("org.mariadb.jdbc.Driver");
-                	String user = "prmody";
-                	String password = "200261429";
+                	String user = "$USERNAME";
+                	String password = "$PASSWORD";
                 	connection = DriverManager.getConnection(jdbcURL, user, password);
 			System.out.println("now the onnection is estb");
                 	statement = connection.createStatement();
-                	connection.setCatalog("prmody");
+                	connection.setCatalog("$USERNAME");
                		return connection;
                }catch(Exception e){ System.out.println(e);}
 		return null;
